@@ -59,5 +59,5 @@ s.dependency 'UMCShare/Social/ReducedWeChat', '6.9.5'
 s.dependency 'UMCShare/Social/ReducedQQ', '6.9.5'
 # 集成新浪微博(精简版1M)
 s.dependency 'UMCShare/Social/ReducedSina', '6.9.5'
-
+s.static_framework = true
 end

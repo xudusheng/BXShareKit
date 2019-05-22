@@ -1,5 +1,5 @@
-use_frameworks!
 
+inhibit_all_warnings!
 platform :ios, '8.0'
 
 target 'BXShareKit_Example' do
@@ -7,7 +7,5 @@ target 'BXShareKit_Example' do
 
   target 'BXShareKit_Tests' do
     inherit! :search_paths
-
-    
   end
 end

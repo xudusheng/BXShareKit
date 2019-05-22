@@ -32,11 +32,32 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'BXShareKit/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'BXShareKit' => ['BXShareKit/Assets/*.png']
-  # }
+   s.resource_bundles = {
+     'BXShareKit' => ['BXShareKit/Assets/*.png']
+   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+ # s.dependency 'AFNetworking', '~> 2.3'
+
+
+# 友盟分享
+s.dependency 'UMCCommon', '2.0.1'
+s.dependency 'UMCSecurityPlugins', '1.0.6'
+#UI模块（分享面板，建议添加）
+s.dependency 'UMCShare/UI', '6.9.5'
+#    # 集成微信(完整版14.4M)
+#    pod 'UMCShare/Social/WeChat'
+#    # 集成QQ/QZone/TIM(完整版7.6M)
+#    pod 'UMCShare/Social/QQ'
+#    # 集成新浪微博(完整版25.3M)
+#    pod 'UMCShare/Social/Sina'
+
+# 集成微信(精简版0.2M)
+s.dependency 'UMCShare/Social/ReducedWeChat', '6.9.5'
+# 集成QQ/QZone/TIM(精简版0.5M)
+s.dependency 'UMCShare/Social/ReducedQQ', '6.9.5'
+# 集成新浪微博(精简版1M)
+s.dependency 'UMCShare/Social/ReducedSina', '6.9.5'
+
 end

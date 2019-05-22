@@ -7,7 +7,13 @@
 //
 
 #import "BXViewController.h"
+
+#if __has_include(<BXShareKit/BXShareKit.h>)
+#import <BXShareKit/BXShareKit.h>
+#else
 #import "BXShareKit.h"
+#endif
+
 @interface BXViewController ()
 
 @end

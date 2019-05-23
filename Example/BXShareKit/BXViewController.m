@@ -27,19 +27,29 @@
     
     [BXShareManager registerUMengAppKey:@"5b7ccb188f4a9d557400001a"];
     [BXShareManager setPlaform:BXSharePlatformType_WeChat appKey:@"wxc81c820b2ebb7a04" appSecret:@"8acea07ac8058f551933fd7a42a6afcc" redirectURL:@""];
-    [BXShareManager configPlatforms:@[
-                                      @(BXSharePlatformType_WeChat),
-                                      @(BXSharePlatformType_WeChatFriends),
-                                      @(BXSharePlatformType_QQ),
-                                      @(BXSharePlatformType_Sina),
-                                      @(BXSharePlatformType_WeChat),
-                                      @(BXSharePlatformType_WeChatFriends),
-                                      @(BXSharePlatformType_QQ),
-                                      @(BXSharePlatformType_Sina),
-                                      @(BXSharePlatformType_WeChat),
-                                      @(BXSharePlatformType_WeChatFriends),
-                                      @(BXSharePlatformType_QQ),
-                                      @(BXSharePlatformType_Sina)]];
+    
+    BXSharePlatformModel *model1 = [BXSharePlatformModel sharePlatformModelWithPlatformType:BXSharePlatformType_WeChat
+                                                                                      title:@"微信好友"
+                                                                                      image:[UIImage imageNamed:@"btn_found_WeChat"]];
+    
+    BXSharePlatformModel *model2 = [[BXSharePlatformModel alloc] init];
+    model2.platformType = BXSharePlatformType_WeChat;
+    model2.item_title = @"朋友圈";
+    model2.item_image = [UIImage imageNamed:@"btn_found_friends"];
+    [BXShareManager configPlatformModels:@[model1, model2]];
+//    [BXShareManager configPlatforms:@[
+//                                      @(BXSharePlatformType_WeChat),
+//                                      @(BXSharePlatformType_WeChatFriends),
+//                                      @(BXSharePlatformType_QQ),
+//                                      @(BXSharePlatformType_Sina),
+//                                      @(BXSharePlatformType_WeChat),
+//                                      @(BXSharePlatformType_WeChatFriends),
+//                                      @(BXSharePlatformType_QQ),
+//                                      @(BXSharePlatformType_Sina),
+//                                      @(BXSharePlatformType_WeChat),
+//                                      @(BXSharePlatformType_WeChatFriends),
+//                                      @(BXSharePlatformType_QQ),
+//                                      @(BXSharePlatformType_Sina)]];
     [self configShareUI];
 }
 

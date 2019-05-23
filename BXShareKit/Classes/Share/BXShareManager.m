@@ -17,7 +17,7 @@
 
 static BXShareManager *_instance;
 
-static NSArray *staticCustomShareViewPlatforms;
+static NSArray <BXSharePlatformModel *>*staticCustomShareViewPlatforms;
 
 @implementation BXShareManager
 
@@ -51,9 +51,51 @@ static NSArray *staticCustomShareViewPlatforms;
     [UMConfigure initWithAppkey:appKey channel:@"App Store"];
 }
 
-
-+ (void)configPlatforms:(NSArray<NSNumber*>*)platforms {
++ (void)configPlatformModels:(NSArray<BXSharePlatformModel*>*)platforms {
     staticCustomShareViewPlatforms = platforms;
+}
++ (void)configPlatforms:(NSArray<NSNumber*>*)platforms {
+    NSMutableArray *platformModelList = [NSMutableArray arrayWithCapacity:0];
+    for (NSNumber *platform in platforms) {
+        NSString *item_title = nil;
+        UIImage *item_image = nil;
+        BXSharePlatformType platformType = platform.integerValue;
+        switch (platformType) {
+            case BXSharePlatformType_WeChat: {
+                item_title = @"微信";
+                item_image = BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_wechat");
+            }
+                break;
+            case BXSharePlatformType_WeChatFriends: {
+                item_title = @"朋友圈";
+                item_image = BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_friends");
+            }
+                break;
+            case BXSharePlatformType_QQ: {
+                item_title = @"QQ";
+                item_image = BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_qq");
+            }
+                break;
+            case BXSharePlatformType_Qzone: {
+                item_title = @"QQ空间";
+                item_image = BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_qq_qzone");
+            }
+                break;
+            case BXSharePlatformType_Sina: {
+                item_title = @"新浪微博";
+                item_image = BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/sina_weibo");
+            }
+            default:
+                continue;
+        }
+        BXSharePlatformModel *platformModel = [[BXSharePlatformModel alloc] init];
+        platformModel.item_title = item_title;
+        platformModel.item_image = item_image;
+        platformModel.platformType = platformType;
+        [platformModelList addObject:platformModel];
+    }
+    
+    staticCustomShareViewPlatforms = platformModelList;
 }
 
 + (void)showShareViewWithModel:(BXShareModel *)model complete:(BXShareHandler)complete {
@@ -120,7 +162,7 @@ static NSArray *staticCustomShareViewPlatforms;
 }
 
 
-+ (void)show:(BXShareModel *)model platformType:(BXSharePlatformType)platformType complete:(BXShareHandler)complete{
++ (void)show:(BXShareModel *)model platformType:(BXSharePlatformType)platformType complete:(BXShareHandler)complete {
     NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     switch (model.shareType) {

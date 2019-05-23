@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BXShareKit'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = '分享模块'
 
 # This description is used to generate tags and improve search results.

@@ -18,7 +18,7 @@
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIScrollView *shareContainerview;//按钮容器
 
-@property (nonatomic,strong) NSArray<NSNumber*>*platforms;
+@property (nonatomic,strong) NSArray<BXSharePlatformModel*>*platforms;
 
 @end
 
@@ -26,7 +26,7 @@
 
 NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
 
-- (instancetype)initWithPlatforms:(NSArray<NSNumber*>*)platforms {
+- (instancetype)initWithPlatforms:(NSArray<BXSharePlatformModel*>*)platforms {
     BXShareViewConfig *shareConfig = [BXShareUIConfig sharedInstance].shareViewConfig;
     CGRect frame = CGRectMake(shareConfig.shareViewMarginLeft, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - shareConfig.shareViewMarginLeft - shareConfig.shareViewMarginRight, 10);
     
@@ -109,47 +109,16 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
     
     __weak typeof(self)weakSelf = self;
 //    __block NSInteger count = 0;
-    [self.platforms enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.platforms enumerateObjectsUsingBlock:^(BXSharePlatformModel * _Nonnull platform, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:RGB(102,102,102,1) forState:UIControlStateNormal];
         btn.titleLabel.font = BX_SHARE_FONT_SIZE(11);
         [btn addTarget:weakSelf action:@selector(shareItemClick:) forControlEvents:UIControlEventTouchUpInside];
-        BXSharePlatformType platformType = obj.unsignedIntegerValue;
         
-        btn.tag = kBXSocialShareViewButtonBaseTag+platformType;
+        btn.tag = kBXSocialShareViewButtonBaseTag+platform.platformType;
+        [btn setTitle:platform.item_title forState:UIControlStateNormal];
+        [btn setImage:platform.item_image forState:UIControlStateNormal];
 
-        switch (platformType) {
-            case BXSharePlatformType_WeChat: {
-                [btn setTitle:@"微信" forState:UIControlStateNormal];
-                [btn setImage:BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_wechat") forState:UIControlStateNormal];
-            }
-                break;
-            case BXSharePlatformType_WeChatFriends: {
-                [btn setTitle:@"朋友圈" forState:UIControlStateNormal];
-                [btn setImage:BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_friends") forState:UIControlStateNormal];
-            }
-                break;
-            case BXSharePlatformType_QQ: {
-                [btn setTitle:@"QQ" forState:UIControlStateNormal];
-                [btn setImage:BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_qq") forState:UIControlStateNormal];
-            }
-                break;
-            case BXSharePlatformType_Qzone: {
-                [btn setTitle:@"QQ空间" forState:UIControlStateNormal];
-                [btn setImage:BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/share_qq_qzone") forState:UIControlStateNormal];
-            }
-                break;
-            case BXSharePlatformType_Sina:
-            {
-                [btn setTitle:@"新浪微博" forState:UIControlStateNormal];
-                [btn setImage:BX_SHARE_BUNDLE_IMAGE(@"BXShareKit.bundle/sina_weibo") forState:UIControlStateNormal];
-            }
-                break;
-            default:
-                [btn setTitle:@"" forState:UIControlStateNormal];
-                break;
-        }
-        
         NSInteger page = idx/itemsPerPage;
         NSInteger itemCountInPage = idx%itemsPerPage;
         

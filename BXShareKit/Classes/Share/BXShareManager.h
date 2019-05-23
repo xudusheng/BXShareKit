@@ -32,7 +32,12 @@ typedef void (^BXShareHandler)(BXSharePlatformType platformType, BXShareState sh
 
 + (void)registerUMengAppKey:(NSString *)appKey;
 
+/**
+ 这是分享平台类型，图片和标题有使用默认
+ @param platforms @[@(BXSharePlatformType)]
+ */
 + (void)configPlatforms:(NSArray<NSNumber*>*)platforms;
++ (void)configPlatformModels:(NSArray<BXSharePlatformModel*>*)platforms;
 
 + (void)showShareViewWithModel:(BXShareModel *)model complete:(BXShareHandler)complete;
 + (void)dissmissShareView;//移除分享视图

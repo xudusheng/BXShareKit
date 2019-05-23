@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "BXShareEnum.h"
-
+#import "BXShareModel.h"
 typedef void (^BXShareItemEventHandler)(BXSharePlatformType platformType);
 
 
 @interface BXSocialShareView : UIView
 
-- (instancetype)initWithPlatforms:(NSArray<NSNumber*>*)platforms;
+- (instancetype)initWithPlatforms:(NSArray<BXSharePlatformModel*>*)platforms;
 
 @property (nonatomic,copy) BXShareItemEventHandler itemClickHandler;
 

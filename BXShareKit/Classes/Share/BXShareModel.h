@@ -25,3 +25,11 @@
 @end
 
 
+@interface BXSharePlatformModel : NSObject
+
+@property (nonatomic,strong) NSString *item_title;
+@property (nonatomic,strong) UIImage *item_image;
+@property (nonatomic,assign) BXSharePlatformType platformType;
+
++ (instancetype)sharePlatformModelWithPlatformType:(BXSharePlatformType)platformType title:(NSString *)item_title image:(UIImage *)item_image;
+@end

@@ -59,7 +59,7 @@
 @property (nonatomic,assign) CGFloat shareItemHeight;//分享Item的宽度，默认65
 @property (nonatomic,assign)CGFloat shareItemTitleAndImageMargin;//item的图片和标题的间距，默认20
 @property (nonatomic,readwrite,strong)UIColor* shareItemTitleColor;//item的标题颜色;
-@property (nonatomic,readwrite,strong)UIColor* shareItemTitleFont;//item的标题颜色;
+@property (nonatomic,readwrite,strong)UIFont* shareItemTitleFont;//item的标题颜色;
 @end
 
 @interface BXShareViewConfig : NSObject

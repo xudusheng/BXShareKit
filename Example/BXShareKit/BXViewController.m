@@ -57,6 +57,7 @@
 - (void)configShareUI {
     BXShareViewConfig *shareConfig = [BXShareUIConfig sharedInstance].shareViewConfig;
     shareConfig.shareViewCornerRadius = 20;
+    shareConfig.separatorColor = [UIColor whiteColor];
     
     BXShareTitleViewConfig *titleConfig =[BXShareUIConfig sharedInstance].shareTitleViewConfig;
     titleConfig.shareTitleViewTitleString = @"分享到";
@@ -74,10 +75,14 @@
     cancelConfig.shareCancelControlText = @"取消";
     cancelConfig.shareCancelControlTextFont = [UIFont systemFontOfSize:14];
     cancelConfig.shareCancelControlTextColor = [UIColor blackColor];
+    cancelConfig.shareCancelControlHeight = 49;
+    cancelConfig.shareCancelControlBackgroundColor = [UIColor groupTableViewBackgroundColor];
     
     BXShareItemContainerViewConfig *itemContainerConfig = [BXShareUIConfig sharedInstance].shareItemContainerViewConfig;
+    itemContainerConfig.shareItemHeight = 85;
     itemContainerConfig.rows = 3;
     itemContainerConfig.columns = 4;
+    itemContainerConfig.shareItemTitleAndImageMargin = 10;
     itemContainerConfig.shareItemContainerViewPaddingInsets = UIEdgeInsetsMake(20, 20, 20, 10);
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -93,9 +98,17 @@
 
         } else {
             NSLog(@"responseMessage = %@", responseMessage);
-
         }
     }];
+}
+
+
+- (IBAction)denglu:(id)sender {
+    NSLog(@"登录");
+}
+
+- (IBAction)register:(id)sender {
+    NSLog(@"注册");
 }
 
 @end

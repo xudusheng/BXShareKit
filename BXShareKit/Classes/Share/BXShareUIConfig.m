@@ -7,7 +7,7 @@
 //
 
 #import "BXShareUIConfig.h"
-
+#import "BXShareDefine.h"
 static BXShareUIConfig *_instance;
 
 @implementation BXShareUIConfig
@@ -84,13 +84,16 @@ static BXShareUIConfig *_instance;
 - (instancetype)init {
     if (self = [super init]) {
         self.shareItemContainerViewBackgroundColor = [UIColor whiteColor];
-        self.shareItemWidth = 65;
-        self.shareItemHeight = 65;
         self.shareItemContainerViewMarginLeft = 0;
         self.shareItemContainerViewMarginRight = 0;
         self.shareItemContainerViewPaddingInsets = UIEdgeInsetsMake(15, 15, 15, 15);
         self.rows = 2;
         self.columns = 4;
+        self.shareItemWidth = 65;
+        self.shareItemHeight = 65;
+        self.shareItemTitleAndImageMargin = 20;
+        self.shareItemTitleColor = RGB(102,102,102,1);
+        self.shareItemTitleFont = BX_SHARE_FONT_SIZE(11);
     }
     return self;
 }

@@ -11,7 +11,7 @@
 @implementation UIButton (BXShare)
 
 
-- (void)btnTitleUnderImgWithHeight:(CGFloat )height{
+- (void)btnTitleUnderImgWithMargin:(CGFloat )margin{
     CGSize imageSize = self.imageView.frame.size;
     CGSize titleSize = self.titleLabel.frame.size;
     CGSize textSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
@@ -19,9 +19,9 @@
     if (titleSize.width + 0.5 < frameSize.width) {
         titleSize.width = frameSize.width;
     }
-    CGFloat totalHeight = (imageSize.height + titleSize.height);
+    CGFloat totalHeight = (imageSize.height + titleSize.height) + margin;
     self.imageEdgeInsets = UIEdgeInsetsMake(- (totalHeight - imageSize.height), 0.0, 0.0, - titleSize.width);
-    self.titleEdgeInsets = UIEdgeInsetsMake(self.frame.size.height - height, -self.imageView.frame.size.width, 0, 0);
+    self.titleEdgeInsets = UIEdgeInsetsMake(totalHeight - titleSize.height , -self.imageView.frame.size.width, 0, 0);
 }
 
 - (void)btnTitleLeftImg{

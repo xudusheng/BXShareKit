@@ -52,16 +52,19 @@
 @property (nonatomic,assign) CGFloat shareItemContainerViewMarginRight;//右边距，默认为0
 @property (nonatomic,assign) UIEdgeInsets shareItemContainerViewPaddingInsets;//内边距。默认为(15,15,15,15)
 
-@property (nonatomic,assign) CGFloat shareItemWidth;//分享Item的宽度，默认65
-@property (nonatomic,assign) CGFloat shareItemHeight;//分享Item的宽度，默认65
 @property (nonatomic,assign) NSUInteger rows;//行数，默认2行
 @property (nonatomic,assign) NSUInteger columns;//列数，默认4列
 
+@property (nonatomic,assign) CGFloat shareItemWidth;//分享Item的宽度，默认65
+@property (nonatomic,assign) CGFloat shareItemHeight;//分享Item的宽度，默认65
+@property (nonatomic,assign)CGFloat shareItemTitleAndImageMargin;//item的图片和标题的间距，默认20
+@property (nonatomic,readwrite,strong)UIColor* shareItemTitleColor;//item的标题颜色;
+@property (nonatomic,readwrite,strong)UIColor* shareItemTitleFont;//item的标题颜色;
 @end
 
 @interface BXShareViewConfig : NSObject
 
-@property(nonatomic,readwrite,strong)UIColor* shareViewBackgroundColor;//背景颜色;
+@property (nonatomic,readwrite,strong)UIColor* shareViewBackgroundColor;//背景颜色;
 @property (nonatomic,assign) CGFloat shareViewMarginLeft;//左边距，默认为0
 @property (nonatomic,assign) CGFloat shareViewMarginRight;//右边距，默认为0
 @property (nonatomic,assign) CGFloat shareViewCornerRadius;//圆角，默认为0
@@ -83,9 +86,4 @@
 @property(nonatomic,readwrite,strong)BXShareCancelControlConfig*          shareCancelControlConfig;
 @property(nonatomic,readwrite,strong)BXShareItemContainerViewConfig*  shareItemContainerViewConfig;
 
-//@property(nonatomic,readwrite,strong)UMSocialSharePageGroupViewConfig*          sharePageGroupViewConfig;
-//@property(nonatomic,readwrite,strong)UMSocialShareContainerConfig*              shareContainerConfig;
-//@property(nonatomic,readwrite,strong)UMSocialSharePageScrollViewConfig*         sharePageScrollViewConfig;
-//@property(nonatomic,readwrite,strong)UMSocialPlatformItemViewConfig*            sharePlatformItemViewConfig;
-//@property(nonatomic,readwrite,strong)UMSocialSharePageControlConfig*            sharePageControlConfig;
 @end

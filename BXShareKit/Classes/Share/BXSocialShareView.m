@@ -11,10 +11,13 @@
 #import "BXShareDefine.h"
 #import "UIButton+BXShare.h"
 #import "BXShareManager.h"
+
 @interface BXSocialShareView ()
 
 @property (nonatomic,strong) UIView *line;
 @property (nonatomic,strong) UIButton *cancelButton;
+@property (nonatomic,strong) UIButton *cancelButtonContainer;
+
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIScrollView *shareContainerview;//按钮容器
 
@@ -67,6 +70,14 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
 }
 - (void)createCancelButton {
     BXShareCancelControlConfig *cancelConfig = [BXShareUIConfig sharedInstance].shareCancelControlConfig;
+    self.cancelButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    [self addSubview:self.cancelButtonContainer];
+    self.cancelButtonContainer.backgroundColor = cancelConfig.shareCancelControlBackgroundColor;
+    if (cancelConfig.shareCancelControlLocation == BXShareCancelControlLocationBottom) {
+        self.cancelButtonContainer.backgroundColor = cancelConfig.shareCancelControlBackgroundColor;
+    }else {
+        self.cancelButtonContainer.backgroundColor = [UIColor clearColor];
+    }
     self.cancelButton = ({
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:cancelConfig.shareCancelControlText forState:UIControlStateNormal];
@@ -74,7 +85,8 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
         [button setImage:cancelConfig.shareCancelControlImage forState:UIControlStateNormal];
         button.titleLabel.font = cancelConfig.shareCancelControlTextFont;//字体大小
         [button addTarget:[BXShareManager sharedInstance] action:@selector(dissmissShareView) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
+        [button setBackgroundColor:cancelConfig.shareCancelControlBackgroundColor];
+        [self.cancelButtonContainer addSubview:button];
         button;
     });
 }
@@ -111,8 +123,8 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
 //    __block NSInteger count = 0;
     [self.platforms enumerateObjectsUsingBlock:^(BXSharePlatformModel * _Nonnull platform, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitleColor:RGB(102,102,102,1) forState:UIControlStateNormal];
-        btn.titleLabel.font = BX_SHARE_FONT_SIZE(11);
+        [btn setTitleColor:itemContainerConfig.shareItemTitleColor forState:UIControlStateNormal];
+        btn.titleLabel.font = itemContainerConfig.shareItemTitleFont;
         [btn addTarget:weakSelf action:@selector(shareItemClick:) forControlEvents:UIControlEventTouchUpInside];
         
         btn.tag = kBXSocialShareViewButtonBaseTag+platform.platformType;
@@ -128,7 +140,7 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
                                       itemWidth,
                                       itemHeight);
         btn.frame = itemFrame;
-        [btn btnTitleUnderImgWithHeight:13];
+        [btn btnTitleUnderImgWithMargin:itemContainerConfig.shareItemTitleAndImageMargin];
         [weakSelf.shareContainerview addSubview:btn];
     }];
     
@@ -173,7 +185,7 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
     self.shareContainerview.frame = containerFrame;
     
     //cancelButton
-    [self bringSubviewToFront:self.cancelButton];
+    [self bringSubviewToFront:self.cancelButtonContainer];
     if (cancelConfig.shareCancelControlLocation == BXShareCancelControlLocationBottom) {
         self.line.hidden = NO;
         CGRect lineFrame = CGRectZero;
@@ -184,30 +196,44 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
         self.line.frame = lineFrame;
         self.line.backgroundColor = shareConfig.separatorColor;
         
-        CGRect cancelButtonFrame = CGRectMake(
+        CGRect cancelButtonContainerFrame = CGRectMake(
                                               cancelConfig.shareCancelControlMarginInsets.left,
                                               CGRectGetMaxY(lineFrame) + cancelConfig.shareCancelControlMarginInsets.top,
                                               CGRectGetWidth(self.frame) - cancelConfig.shareCancelControlMarginInsets.left - cancelConfig.shareCancelControlMarginInsets.right,
-                                              cancelConfig.shareCancelControlHeight);
+                                              cancelConfig.shareCancelControlHeight + cancelConfig.shareCancelControlMarginInsets.bottom);
+        self.cancelButtonContainer.frame = cancelButtonContainerFrame;
+        CGRect cancelButtonFrame = cancelButtonContainerFrame;
+        cancelButtonFrame.origin.y = 0;
+        cancelButtonContainerFrame.size.height = CGRectGetHeight(cancelButtonContainerFrame)-cancelConfig.shareCancelControlMarginInsets.bottom;
         self.cancelButton.frame = cancelButtonFrame;
-        selfFrame.size.height = CGRectGetMaxY(cancelButtonFrame) + cancelConfig.shareCancelControlMarginInsets.bottom;
+        selfFrame.size.height = CGRectGetMaxY(cancelButtonContainerFrame) + cancelConfig.shareCancelControlMarginInsets.bottom;
         
     } else if (cancelConfig.shareCancelControlLocation == BXShareCancelControlLocationTopAndLeft) {
-        CGRect cancelButtonFrame = CGRectMake(0, 0, cancelConfig.shareCancelControlHeight, cancelConfig.shareCancelControlHeight);
-        self.cancelButton.frame = cancelButtonFrame;
-        self.cancelButton.center = CGPointMake(cancelConfig.shareCancelControlMarginInsets.left + CGRectGetMidX(cancelButtonFrame), CGRectGetMidY(titleLabelFrame));
+        CGRect cancelButtonContainerFrame = CGRectMake(0, 0, cancelConfig.shareCancelControlHeight, cancelConfig.shareCancelControlHeight);
+        self.cancelButtonContainer.frame = cancelButtonContainerFrame;
+        self.cancelButtonContainer.center = CGPointMake(cancelConfig.shareCancelControlMarginInsets.left + CGRectGetMidX(cancelButtonContainerFrame), CGRectGetMidY(titleLabelFrame));
+        self.cancelButton.frame = self.cancelButtonContainer.bounds;
 
+        titleLabelFrame.origin.x = CGRectGetMaxX(cancelButtonContainerFrame) + titleConfig.shareTitleViewMarginInsets.left;
+        self.titleLabel.frame = titleLabelFrame;
+        
         selfFrame.size.height = CGRectGetMaxY(containerFrame);
     } else if (cancelConfig.shareCancelControlLocation == BXShareCancelControlLocationTopAndRight) {
-        CGRect cancelButtonFrame = CGRectMake(0, 0, cancelConfig.shareCancelControlHeight, cancelConfig.shareCancelControlHeight);
-        self.cancelButton.frame = cancelButtonFrame;
-        self.cancelButton.center = CGPointMake(CGRectGetWidth(self.frame) - CGRectGetMidX(cancelButtonFrame) - cancelConfig.shareCancelControlMarginInsets.right, CGRectGetMidY(titleLabelFrame));
-
+        CGRect cancelButtonContainerFrame = CGRectMake(0, 0, cancelConfig.shareCancelControlHeight, cancelConfig.shareCancelControlHeight);
+        self.cancelButtonContainer.frame = cancelButtonContainerFrame;
+        self.cancelButtonContainer.center = CGPointMake(CGRectGetWidth(self.frame) - CGRectGetMidX(cancelButtonContainerFrame) - cancelConfig.shareCancelControlMarginInsets.right, CGRectGetMidY(titleLabelFrame));
+        self.cancelButton.frame = self.cancelButtonContainer.bounds;
+        
         selfFrame.size.height = CGRectGetMaxY(containerFrame);
     }
     
     selfFrame.size.height = CGRectGetHeight(selfFrame) + shareConfig.shareViewCornerRadius;
     if (@available(iOS 11.0, *)) {
+        if (cancelConfig.shareCancelControlLocation == BXShareCancelControlLocationBottom) {
+            CGRect cancelButtonContainerFrame = self.cancelButtonContainer.frame;
+            cancelButtonContainerFrame.size.height = cancelButtonContainerFrame.size.height + [UIApplication sharedApplication].delegate.window.safeAreaInsets.bottom;
+            self.cancelButtonContainer.frame = cancelButtonContainerFrame;
+        }
         selfFrame.size.height = CGRectGetHeight(selfFrame) + [UIApplication sharedApplication].delegate.window.safeAreaInsets.bottom;
     }
     self.frame = selfFrame;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,63 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67I-fX-gC6">
+                                <rect key="frame" x="30" y="120" width="315" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Fdu-ar-Ucf"/>
+                                </constraints>
+                                <state key="normal" title="登录"/>
+                                <connections>
+                                    <action selector="denglu:" destination="whP-gf-Uak" eventType="touchUpInside" id="Gaj-1S-ZUe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNl-5k-g6j">
+                                <rect key="frame" x="30" y="180" width="315" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="注册">
+                                    <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="register:" destination="whP-gf-Uak" eventType="touchUpInside" id="mvo-3d-QL9"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" background="UMS_add_friend_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Faq-uc-bVo">
+                                <rect key="frame" x="30" y="240" width="315" height="40"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="请输入">
+                                        <attributes>
+                                            <color key="NSColor" red="0.33882356526866009" green="0.94577240053900191" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="11" name=".PingFangSC-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="123456">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.27683249730749693" blue="0.17735097341648842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" metaFont="smallSystem"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Faq-uc-bVo" firstAttribute="height" secondItem="RNl-5k-g6j" secondAttribute="height" id="3Nu-Lq-PvH"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="top" secondItem="67I-fX-gC6" secondAttribute="bottom" constant="20" id="EK6-ST-757"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="trailing" secondItem="67I-fX-gC6" secondAttribute="trailing" id="GIP-R7-fWm"/>
+                            <constraint firstItem="Faq-uc-bVo" firstAttribute="top" secondItem="RNl-5k-g6j" secondAttribute="bottom" constant="20" id="HqP-ze-ikC"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="leading" secondItem="67I-fX-gC6" secondAttribute="leading" id="JUh-MY-qfj"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="height" secondItem="67I-fX-gC6" secondAttribute="height" id="crY-ej-Fmb"/>
+                            <constraint firstItem="Faq-uc-bVo" firstAttribute="leading" secondItem="RNl-5k-g6j" secondAttribute="leading" id="f6B-XU-44f"/>
+                            <constraint firstItem="Faq-uc-bVo" firstAttribute="trailing" secondItem="RNl-5k-g6j" secondAttribute="trailing" id="hTI-AH-KLN"/>
+                            <constraint firstItem="67I-fX-gC6" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="100" id="hzo-JC-T0F"/>
+                            <constraint firstAttribute="trailing" secondItem="67I-fX-gC6" secondAttribute="trailing" constant="30" id="ulf-fu-Sgf"/>
+                            <constraint firstItem="67I-fX-gC6" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="30" id="vtR-Nj-vMb"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -28,4 +84,7 @@
             <point key="canvasLocation" x="305" y="433"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="UMS_add_friend_off.png" width="13" height="13"/>
+    </resources>
 </document>

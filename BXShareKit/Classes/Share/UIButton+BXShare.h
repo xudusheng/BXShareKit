@@ -11,7 +11,7 @@
 @interface UIButton (BXShare)
 
 - (void)btnTitleLeftImg;
-- (void)btnTitleUnderImgWithHeight:(CGFloat )height;
+- (void)btnTitleUnderImgWithMargin:(CGFloat )margin;
 - (void)btnImgUnderTitleWithHeight:(CGFloat )height;
 
 

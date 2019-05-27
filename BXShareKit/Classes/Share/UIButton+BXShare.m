@@ -10,7 +10,22 @@
 
 @implementation UIButton (BXShare)
 
-
+- (void)configWithButtonType:(BXButtonType)buttonType margin:(CGFloat)margin {
+    switch (buttonType) {
+        case BXButtonTypeTitleImageRightAndLeft:
+            [self btnTitleRightImgWithMargin:margin];
+            break;
+        case BXButtonTypeTitleImageLeftAndRight:
+            [self btnTitleLeftImgWithMargin:margin];
+            break;
+        case BXButtonTypeTitleImageBottomAndTop:
+            [self btnTitleUnderImgWithMargin:margin];
+            break;
+        case BXButtonTypeTitleImageTopAndBottom:
+            [self btnImgUnderTitleWithMargin:margin];
+            break;
+    }
+}
 - (void)btnTitleUnderImgWithMargin:(CGFloat )margin{
     CGSize imageSize = self.imageView.frame.size;
     CGSize titleSize = self.titleLabel.frame.size;
@@ -24,30 +39,46 @@
     self.titleEdgeInsets = UIEdgeInsetsMake(totalHeight - titleSize.height , -self.imageView.frame.size.width, 0, 0);
 }
 
-- (void)btnTitleLeftImg{
-    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, - self.imageView.frame.size.width, 0, self.imageView.frame.size.width)];
-    [self setImageEdgeInsets:UIEdgeInsetsMake(0, self.titleLabel.bounds.size.width, 0, -self.titleLabel.bounds.size.width - 10)];
+- (void)btnImgUnderTitleWithMargin:(CGFloat)margin {
+    CGSize imageSize = self.imageView.frame.size;
+    CGSize titleSize = self.titleLabel.frame.size;
+    CGSize textSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
+    CGSize frameSize = CGSizeMake(ceilf(textSize.width), ceilf(textSize.height));
+    if (titleSize.width + 0.5 < frameSize.width) {
+        titleSize.width = frameSize.width;
+    }
+    CGFloat totalHeight = (imageSize.height + titleSize.height) + margin;
+    self.titleEdgeInsets = UIEdgeInsetsMake(- (totalHeight - titleSize.height), -imageSize.width, 0.0, 0.0);
+    self.imageEdgeInsets = UIEdgeInsetsMake(totalHeight - imageSize.height , 0.0, 0, -titleSize.width);
 }
 
-- (void)btnImgUnderTitleWithHeight:(CGFloat )height{
-    CGFloat img_W = self.imageView.frame.size.width;
-    CGFloat img_H = self.imageView.frame.size.height;
-    CGFloat tit_W = self.titleLabel.frame.size.width;
-    CGFloat tit_H = self.titleLabel.frame.size.height;
+- (void)btnTitleLeftImgWithMargin:(CGFloat)margin{
     
-    self.titleEdgeInsets = (UIEdgeInsets){
-        .top    = - (tit_H / 2 + height / 2),
-        .left   = - (img_W / 2),
-        .bottom =   (tit_H / 2 + height / 2),
-        .right  =   (img_W / 2),
-    };
+    CGSize imageSize = self.imageView.frame.size;
+    CGSize titleSize = self.titleLabel.frame.size;
+    CGSize textSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
+    CGSize frameSize = CGSizeMake(ceilf(textSize.width), ceilf(textSize.height));
+    if (titleSize.width + 0.5 < frameSize.width) {
+        titleSize.width = frameSize.width;
+    }
+    CGFloat totalWidth = (imageSize.width + titleSize.width) + margin/2.0;
     
-    self.imageEdgeInsets = (UIEdgeInsets){
-        .top    =   (img_H / 2 + height / 2),
-        .left   =   (tit_W / 2),
-        .bottom = - (img_H / 2 + height / 2),
-        .right  = - (tit_W / 2),
-    };
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, - (totalWidth - textSize.width), 0, (totalWidth - textSize.width))];
+    [self setImageEdgeInsets:UIEdgeInsetsMake(0, (totalWidth-imageSize.width), 0, -(totalWidth-imageSize.width))];
+}
+
+- (void)btnTitleRightImgWithMargin:(CGFloat)margin{
+    CGSize imageSize = self.imageView.frame.size;
+    CGSize titleSize = self.titleLabel.frame.size;
+    CGSize textSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
+    CGSize frameSize = CGSizeMake(ceilf(textSize.width), ceilf(textSize.height));
+    if (titleSize.width + 0.5 < frameSize.width) {
+        titleSize.width = frameSize.width;
+    }
+    CGFloat totalWidth = (imageSize.width + titleSize.width) + margin/2.0;
+    
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, margin/2.0, 0, -margin/2.0)];
+    [self setImageEdgeInsets:UIEdgeInsetsMake(0, -margin/2.0, 0, margin/2.0)];
 }
 
 @end

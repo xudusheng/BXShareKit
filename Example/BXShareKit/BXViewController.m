@@ -14,8 +14,14 @@
 #import "BXShareKit.h"
 #endif
 
-@interface BXViewController ()
+#import "UIButton+BXShare.h"
 
+@interface BXViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *okButton;
 @end
 
 @implementation BXViewController
@@ -51,8 +57,16 @@
 //                                      @(BXSharePlatformType_QQ),
 //                                      @(BXSharePlatformType_Sina)]];
     [self configShareUI];
+    
+    [self configButton];
 }
 
+
+
+
+
+
+#pragma mark - UI相关
 
 - (void)configShareUI {
     BXShareViewConfig *shareConfig = [BXShareUIConfig sharedInstance].shareViewConfig;
@@ -95,14 +109,35 @@
     [BXShareManager showShareViewWithModel:shareModel complete:^(BXSharePlatformType platformType, BXShareState shareState, NSString *responseMessage, BOOL success) {
         if (shareState == BXShareStateBegin) {
             NSLog(@"shareState = 点击了分享");
-
+            
         } else {
             NSLog(@"responseMessage = %@", responseMessage);
         }
     }];
 }
 
+- (void)configButton {
+    self.loginButton.imageView.backgroundColor = [UIColor blueColor];
+    self.loginButton.titleLabel.backgroundColor = [UIColor greenColor];
+    [self.loginButton configWithButtonType:BXButtonTypeTitleImageBottomAndTop margin:10];
+    
+    self.registerButton.imageView.backgroundColor = [UIColor blueColor];
+    self.registerButton.titleLabel.backgroundColor = [UIColor greenColor];
+    [self.registerButton configWithButtonType:BXButtonTypeTitleImageTopAndBottom margin:10];
+    
+    self.cancelButton.imageView.backgroundColor = [UIColor blueColor];
+    self.cancelButton.titleLabel.backgroundColor = [UIColor greenColor];
+    [self.cancelButton configWithButtonType:BXButtonTypeTitleImageLeftAndRight margin:10];
+    
+    self.okButton.imageView.backgroundColor = [UIColor blueColor];
+    self.okButton.titleLabel.backgroundColor = [UIColor greenColor];
+    [self.okButton configWithButtonType:BXButtonTypeTitleImageRightAndLeft margin:10];
+}
+#pragma mark - request method 网络请求
 
+#pragma mark - delegate method 代理方法
+
+#pragma mark - event response 事件响应处理
 - (IBAction)denglu:(id)sender {
     NSLog(@"登录");
 }
@@ -110,5 +145,10 @@
 - (IBAction)register:(id)sender {
     NSLog(@"注册");
 }
+#pragma mark - private method 其他私有方法
+
+#pragma mark - setter & getter
+
+#pragma mark - memery 内存管理相关
 
 @end

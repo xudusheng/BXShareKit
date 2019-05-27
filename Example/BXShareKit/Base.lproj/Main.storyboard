@@ -21,63 +21,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67I-fX-gC6">
-                                <rect key="frame" x="30" y="120" width="315" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67I-fX-gC6">
+                                <rect key="frame" x="30" y="120" width="80" height="80"/>
                                 <color key="backgroundColor" red="1" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Fdu-ar-Ucf"/>
+                                    <constraint firstAttribute="width" constant="80" id="6Bk-0y-vZS"/>
+                                    <constraint firstAttribute="height" constant="80" id="Fdu-ar-Ucf"/>
                                 </constraints>
-                                <state key="normal" title="登录"/>
+                                <state key="normal" title="登录" image="btn_found_WeChat"/>
                                 <connections>
                                     <action selector="denglu:" destination="whP-gf-Uak" eventType="touchUpInside" id="Gaj-1S-ZUe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNl-5k-g6j">
-                                <rect key="frame" x="30" y="180" width="315" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="注册">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNl-5k-g6j">
+                                <rect key="frame" x="115" y="120" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="注册" image="btn_found_WeChat">
                                     <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="register:" destination="whP-gf-Uak" eventType="touchUpInside" id="mvo-3d-QL9"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" background="UMS_add_friend_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Faq-uc-bVo">
-                                <rect key="frame" x="30" y="240" width="315" height="40"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="请输入">
-                                        <attributes>
-                                            <color key="NSColor" red="0.33882356526866009" green="0.94577240053900191" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="11" name=".PingFangSC-Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="123456">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="0.27683249730749693" blue="0.17735097341648842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" metaFont="smallSystem"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-zV-w9L">
+                                <rect key="frame" x="200" y="120" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="注册" image="btn_found_WeChat">
+                                    <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="register:" destination="whP-gf-Uak" eventType="touchUpInside" id="YDe-Wr-IZV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfY-FO-v3i">
+                                <rect key="frame" x="285" y="120" width="80" height="80"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="注册" image="btn_found_WeChat">
+                                    <color key="titleColor" red="0.99215686270000003" green="0.99215686270000003" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="register:" destination="whP-gf-Uak" eventType="touchUpInside" id="gkN-vM-PyV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Faq-uc-bVo" firstAttribute="height" secondItem="RNl-5k-g6j" secondAttribute="height" id="3Nu-Lq-PvH"/>
-                            <constraint firstItem="RNl-5k-g6j" firstAttribute="top" secondItem="67I-fX-gC6" secondAttribute="bottom" constant="20" id="EK6-ST-757"/>
-                            <constraint firstItem="RNl-5k-g6j" firstAttribute="trailing" secondItem="67I-fX-gC6" secondAttribute="trailing" id="GIP-R7-fWm"/>
-                            <constraint firstItem="Faq-uc-bVo" firstAttribute="top" secondItem="RNl-5k-g6j" secondAttribute="bottom" constant="20" id="HqP-ze-ikC"/>
-                            <constraint firstItem="RNl-5k-g6j" firstAttribute="leading" secondItem="67I-fX-gC6" secondAttribute="leading" id="JUh-MY-qfj"/>
-                            <constraint firstItem="RNl-5k-g6j" firstAttribute="height" secondItem="67I-fX-gC6" secondAttribute="height" id="crY-ej-Fmb"/>
-                            <constraint firstItem="Faq-uc-bVo" firstAttribute="leading" secondItem="RNl-5k-g6j" secondAttribute="leading" id="f6B-XU-44f"/>
-                            <constraint firstItem="Faq-uc-bVo" firstAttribute="trailing" secondItem="RNl-5k-g6j" secondAttribute="trailing" id="hTI-AH-KLN"/>
+                            <constraint firstItem="L6e-zV-w9L" firstAttribute="top" secondItem="RNl-5k-g6j" secondAttribute="top" id="0b9-j7-YSP"/>
+                            <constraint firstItem="nfY-FO-v3i" firstAttribute="top" secondItem="L6e-zV-w9L" secondAttribute="top" id="5aR-U7-jK5"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="leading" secondItem="67I-fX-gC6" secondAttribute="trailing" constant="5" id="Df5-15-f60"/>
+                            <constraint firstItem="L6e-zV-w9L" firstAttribute="bottom" secondItem="RNl-5k-g6j" secondAttribute="bottom" id="HsS-oe-gwh"/>
+                            <constraint firstItem="nfY-FO-v3i" firstAttribute="bottom" secondItem="L6e-zV-w9L" secondAttribute="bottom" id="LaT-Py-pqc"/>
+                            <constraint firstItem="nfY-FO-v3i" firstAttribute="leading" secondItem="L6e-zV-w9L" secondAttribute="trailing" constant="5" id="N6c-Ex-vha"/>
+                            <constraint firstItem="L6e-zV-w9L" firstAttribute="width" secondItem="RNl-5k-g6j" secondAttribute="width" id="NGd-Vu-OGJ"/>
+                            <constraint firstItem="nfY-FO-v3i" firstAttribute="width" secondItem="L6e-zV-w9L" secondAttribute="width" id="fwq-6Y-WP6"/>
                             <constraint firstItem="67I-fX-gC6" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="100" id="hzo-JC-T0F"/>
-                            <constraint firstAttribute="trailing" secondItem="67I-fX-gC6" secondAttribute="trailing" constant="30" id="ulf-fu-Sgf"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="bottom" secondItem="67I-fX-gC6" secondAttribute="bottom" id="l7X-XW-kfD"/>
+                            <constraint firstItem="L6e-zV-w9L" firstAttribute="leading" secondItem="RNl-5k-g6j" secondAttribute="trailing" constant="5" id="nGr-4q-rMq"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="width" secondItem="67I-fX-gC6" secondAttribute="width" id="qaW-gC-CzT"/>
+                            <constraint firstItem="RNl-5k-g6j" firstAttribute="top" secondItem="67I-fX-gC6" secondAttribute="top" id="sJX-6m-AMP"/>
                             <constraint firstItem="67I-fX-gC6" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="30" id="vtR-Nj-vMb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="L6e-zV-w9L" id="iLS-Pf-WKB"/>
+                        <outlet property="loginButton" destination="67I-fX-gC6" id="Qni-gv-1KK"/>
+                        <outlet property="okButton" destination="nfY-FO-v3i" id="hZI-5c-kOI"/>
+                        <outlet property="registerButton" destination="RNl-5k-g6j" id="fLY-XG-2f8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,6 +97,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="UMS_add_friend_off.png" width="13" height="13"/>
+        <image name="btn_found_WeChat" width="40" height="40"/>
     </resources>
 </document>

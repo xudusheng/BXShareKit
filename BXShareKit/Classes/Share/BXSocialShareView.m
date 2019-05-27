@@ -140,7 +140,7 @@ NSInteger const kBXSocialShareViewButtonBaseTag = 1000;
                                       itemWidth,
                                       itemHeight);
         btn.frame = itemFrame;
-        [btn btnTitleUnderImgWithMargin:itemContainerConfig.shareItemTitleAndImageMargin];
+        [btn configWithButtonType:BXButtonTypeTitleImageBottomAndTop margin:itemContainerConfig.shareItemTitleAndImageMargin];
         [weakSelf.shareContainerview addSubview:btn];
     }];
     

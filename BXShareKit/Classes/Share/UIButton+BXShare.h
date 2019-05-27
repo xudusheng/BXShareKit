@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, BXButtonType) {
+    BXButtonTypeTitleImageRightAndLeft,
+    BXButtonTypeTitleImageLeftAndRight,
+    BXButtonTypeTitleImageTopAndBottom,
+    BXButtonTypeTitleImageBottomAndTop,
+};
+
 @interface UIButton (BXShare)
 
 - (void)btnTitleLeftImg;
-- (void)btnTitleUnderImgWithMargin:(CGFloat )margin;
-- (void)btnImgUnderTitleWithHeight:(CGFloat )height;
 
+- (void)configWithButtonType:(BXButtonType)buttonType margin:(CGFloat)margin;
 
 
 @end
